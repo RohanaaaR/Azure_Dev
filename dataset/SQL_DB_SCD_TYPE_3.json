@@ -1,0 +1,35 @@
+{
+	"name": "SQL_DB_SCD_TYPE_3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "text"
+			},
+			{
+				"name": "password",
+				"type": "text"
+			},
+			{
+				"name": "password_old",
+				"type": "text"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SCD_TYPE_3"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,14 @@
+{
+	"name": "RestService2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "For Assignment",
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://restcountries.com/v3.1/name/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

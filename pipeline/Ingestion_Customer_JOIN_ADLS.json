@@ -1,0 +1,71 @@
+{
+	"name": "Ingestion_Customer_JOIN_ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT \n cust.CustomerID\n,cust.NameStyle\n,cust.Title\n,cust.FirstName \n,cust.MiddleName\n,cust.LastName\n,cust.Suffix\n,cust.CompanyName\n,cust.SalesPerson\n,cust.EmailAddress\n,cust.Phone\n,cust.PasswordHash\n,cust.PasswordSalt\n,addr.AddressID\n,addr.AddressLine1\n,addr.AddressLine2\n,addr.City\n,addr.StateProvince\n,addr.CountryRegion\n,addr.PostalCode\nFROM [SalesLT].[Customer] cust\njoin [SalesLT].[CustomerAddress] cust_addr on cust.customerID = cust_addr.customerID\njoin [SalesLT].[Address] addr on cust_addr.AddressID = addr.AddressID;\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": "SalesLT",
+							"tableName": "abc"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Landing_CSV",
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": "customer_details",
+							"folderName": "Customer"
+						}
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-10-20T11:08:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "india_file_based_trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "File based trigger",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/landing/blobs/REST_API/india",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/9a2d5e4d-8095-42f0-b3d8-97d761f81b4e/resourceGroups/Azurelib-Academy/providers/Microsoft.Storage/storageAccounts/rrohan0410adls",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

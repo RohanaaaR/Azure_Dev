@@ -1,0 +1,9 @@
+{
+	"name": "mission100rohan04101997",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3e0874cd-9ce7-4639-a913-70f9a3c2c13d",
+		"tenantId": "0d4da0f8-4a31-4d76-ace6-0a62331e1b84"
+	}
+}
